@@ -32,8 +32,8 @@ public class TableOfContentsFile implements EpubFile{
 			Element head = generateHead();
 			ncx.addContent(head);
 			
-			Element doctitle = new Element("docTitle", NamespaceList.ncx);
-			Element title = new Element("text", NamespaceList.ncx);
+			Element doctitle = new Element("docTitle", ncx.getNamespace());
+			Element title = new Element("text", doctitle.getNamespace());
 			title.setText(book.getTitle());
 			doctitle.addContent(title);
 			ncx.addContent(doctitle);
@@ -54,27 +54,27 @@ public class TableOfContentsFile implements EpubFile{
 	private Element generateHead() {
 		Element head = new Element("head", NamespaceList.ncx);
 		
-		Element uid = new Element("meta", NamespaceList.ncx);
+		Element uid = new Element("meta", head.getNamespace());
 		uid.setAttribute("name", "dtb:uid");
 		uid.setAttribute("content", "0");
 		head.addContent(uid);
 		
-		Element depth = new Element("meta", NamespaceList.ncx);
+		Element depth = new Element("meta", head.getNamespace());
 		depth.setAttribute("name", "dtb:depth");
 		depth.setAttribute("content", "1");
 		head.addContent(depth);
 		
-		Element generator = new Element("meta", NamespaceList.ncx);
+		Element generator = new Element("meta", head.getNamespace());
 		generator.setAttribute("name", "dtb:generator");
 		generator.setAttribute("content", "JePUB by Danick Triantis");
 		head.addContent(generator);
 		
-		Element totalpagecount = new Element("meta", NamespaceList.ncx);
+		Element totalpagecount = new Element("meta", head.getNamespace());
 		totalpagecount.setAttribute("name", "dtb:totalPageCount");
 		totalpagecount.setAttribute("content", "0");
 		head.addContent(totalpagecount);
 		
-		Element maxpagenumber = new Element("meta", NamespaceList.ncx);
+		Element maxpagenumber = new Element("meta", head.getNamespace());
 		maxpagenumber.setAttribute("name", "dtb:maxPageNumber");
 		maxpagenumber.setAttribute("content", "0");
 		head.addContent(maxpagenumber);
@@ -87,18 +87,18 @@ public class TableOfContentsFile implements EpubFile{
 		
 		int id = 0;
 		for(File f : book.getTextDirectory().listFiles()) {
-			Element navpoint = new Element("navPoint", NamespaceList.ncx);
+			Element navpoint = new Element("navPoint", navmap.getNamespace());
 			navpoint.setAttribute("id", "navPoint-" + Integer.toString(id + 1));
 			navpoint.setAttribute("playOrder", Integer.toString(id + 1));
 			
-			Element navlabel = new Element("navLabel", NamespaceList.ncx);
+			Element navlabel = new Element("navLabel", navmap.getNamespace());
 			Element label = new Element("text", NamespaceList.ncx);
 			label.setText("Chapter " + Integer.toString(id + 1));
 			navlabel.addContent(label);
 			navpoint.addContent(navlabel);
 			
 			String filepath = book.getRelativePath(f, book.getOebpsDirectory());
-			Element content = new Element("content", NamespaceList.ncx);
+			Element content = new Element("content", navmap.getNamespace());
 			content.setAttribute("src", filepath);
 			navpoint.addContent(content);
 			

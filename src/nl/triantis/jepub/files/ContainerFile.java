@@ -28,9 +28,9 @@ public class ContainerFile implements EpubFile{
 			Element container = new Element("container", NamespaceList.container);
 			container.setAttribute("version", "1.0");
 			
-			Element rootfiles = new Element("rootfiles", NamespaceList.container);
+			Element rootfiles = new Element("rootfiles", container.getNamespace());
 			
-			Element rootfile = new Element("rootfile", NamespaceList.container);
+			Element rootfile = new Element("rootfile", container.getNamespace());
 			rootfile.setAttribute("full-path", "OEBPS/content.opf");
 			rootfile.setAttribute("media-type", "application/oebps-package+xml");
 			

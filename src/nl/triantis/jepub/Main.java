@@ -21,6 +21,7 @@ public class Main {
 	 */
 	
 	private static String export_directory = "export";
+	private static String import_directory = "import";
 	
 	public static void main(String[] args) {
 		String author = "Danick Triantis";
