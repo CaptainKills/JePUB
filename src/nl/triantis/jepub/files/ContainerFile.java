@@ -25,13 +25,12 @@ public class ContainerFile implements EpubFile{
 		File file = book.getContainerFile();
 		
 		try (FileOutputStream out = new FileOutputStream(file)){
-			Element container = new Element("container");
-			container.setNamespace(NamespaceList.container);
+			Element container = new Element("container", NamespaceList.container);
 			container.setAttribute("version", "1.0");
 			
-			Element rootfiles = new Element("rootfiles");
+			Element rootfiles = new Element("rootfiles", NamespaceList.container);
 			
-			Element rootfile = new Element("rootfile");
+			Element rootfile = new Element("rootfile", NamespaceList.container);
 			rootfile.setAttribute("full-path", "OEBPS/content.opf");
 			rootfile.setAttribute("media-type", "application/oebps-package+xml");
 			

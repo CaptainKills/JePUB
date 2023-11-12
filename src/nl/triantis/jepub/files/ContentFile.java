@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.Namespace;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
@@ -26,8 +25,7 @@ public class ContentFile implements EpubFile{
 		File file = book.getContentFile();
 		
 		try (FileOutputStream out = new FileOutputStream(file)){
-			Element root = new Element("package");
-			root.setNamespace(Namespace.getNamespace(NamespaceList.opf.getURI()));
+			Element root = new Element("package", NamespaceList.opf_uri);
 			root.setAttribute("unique-identifier", "uuid_id");
 			root.setAttribute("version", "2.0");
 			
@@ -54,7 +52,7 @@ public class ContentFile implements EpubFile{
 	}
 	
 	private Element generateMetadata() {
-		Element metadata = new Element("metadata");
+		Element metadata = new Element("metadata", NamespaceList.opf_uri);
 		metadata.addNamespaceDeclaration(NamespaceList.dcterms);
 		metadata.addNamespaceDeclaration(NamespaceList.calibre);
 		metadata.addNamespaceDeclaration(NamespaceList.xsi);
@@ -103,12 +101,12 @@ public class ContentFile implements EpubFile{
 	}
 	
 	private Element generateManifest() {
-		Element manifest = new Element("manifest");
+		Element manifest = new Element("manifest", NamespaceList.opf_uri);
 		
 		for(File f : book.getTextDirectory().listFiles()) {
 			String filepath = book.getRelativePath(f, book.getOebpsDirectory());
 			
-			Element text = new Element("item");
+			Element text = new Element("item", NamespaceList.opf_uri);
 			text.setAttribute("href", filepath);
 			text.setAttribute("id", f.getName());
 			text.setAttribute("media-type", "application/xhtml+xml");
@@ -118,7 +116,7 @@ public class ContentFile implements EpubFile{
 		for(File f : book.getImagesDirectory().listFiles()) {
 			String filepath = book.getRelativePath(f, book.getOebpsDirectory());
 			
-			Element image = new Element("item");
+			Element image = new Element("item", NamespaceList.opf_uri);
 			image.setAttribute("href", filepath);
 			image.setAttribute("id", f.getName());
 			image.setAttribute("media-type", "image/jpeg");
@@ -126,21 +124,21 @@ public class ContentFile implements EpubFile{
 		}
 		
 		String filepath = book.getRelativePath(book.getPageStylesFile(), book.getOebpsDirectory());
-		Element pagestyle = new Element("item");
+		Element pagestyle = new Element("item", NamespaceList.opf_uri);
 		pagestyle.setAttribute("href", filepath);
 		pagestyle.setAttribute("id", "page_css");
 		pagestyle.setAttribute("media-type", "text/css");
 		manifest.addContent(pagestyle);
 		
 		filepath = book.getRelativePath(book.getStylesheetFile(), book.getOebpsDirectory());
-		Element stylesheet = new Element("item");
+		Element stylesheet = new Element("item", NamespaceList.opf_uri);
 		stylesheet.setAttribute("href", filepath);
 		stylesheet.setAttribute("id", "css");
 		stylesheet.setAttribute("media-type", "text/css");
 		manifest.addContent(stylesheet);
 		
 		filepath = book.getRelativePath(book.getTableOfContentsFile(), book.getOebpsDirectory());
-		Element toc = new Element("item");
+		Element toc = new Element("item", NamespaceList.opf_uri);
 		toc.setAttribute("href", filepath);
 		toc.setAttribute("id", "ncx");
 		toc.setAttribute("media-type", "application/x-dtbncx+xml");
@@ -150,11 +148,11 @@ public class ContentFile implements EpubFile{
 	}
 	
 	private Element generateSpine() {
-		Element spine = new Element("spine");
+		Element spine = new Element("spine", NamespaceList.opf_uri);
 		spine.setAttribute("toc", "ncx");
 		
 		for(File f : book.getTextDirectory().listFiles()) {
-			Element text = new Element("itemref");
+			Element text = new Element("itemref", NamespaceList.opf_uri);
 			text.setAttribute("idref", f.getName());
 			spine.addContent(text);
 		}
@@ -163,27 +161,27 @@ public class ContentFile implements EpubFile{
 	}
 	
 	private Element generateGuide() {
-		Element guide = new Element("guide");
+		Element guide = new Element("guide", NamespaceList.opf_uri);
 		
-		Element cover = new Element("reference");
+		Element cover = new Element("reference", NamespaceList.opf_uri);
 		cover.setAttribute("type", "cover");
 		cover.setAttribute("title", "Cover");
 		cover.setAttribute("href", "");
 		guide.addContent(cover);
 		
-		Element titlepage = new Element("reference");
+		Element titlepage = new Element("reference", NamespaceList.opf_uri);
 		titlepage.setAttribute("type", "text");
 		titlepage.setAttribute("title", "Title Page");
 		titlepage.setAttribute("href", "");
 		guide.addContent(titlepage);
 		
-		Element toc = new Element("reference");
+		Element toc = new Element("reference", NamespaceList.opf_uri);
 		toc.setAttribute("type", "toc");
 		toc.setAttribute("title", "Table of Contents");
 		toc.setAttribute("href", "");
 		guide.addContent(toc);
 		
-		Element text = new Element("reference");
+		Element text = new Element("reference", NamespaceList.opf_uri);
 		text.setAttribute("type", "text");
 		text.setAttribute("title", "Text");
 		text.setAttribute("href", "");

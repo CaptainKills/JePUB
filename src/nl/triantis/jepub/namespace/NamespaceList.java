@@ -13,5 +13,6 @@ public class NamespaceList {
 	public static Namespace dc = Namespace.getNamespace("dc", "http://purl.org/dc/elements/1.1/");
 	
 	public static Namespace ncx = Namespace.getNamespace("http://www.daisy.org/z3986/2005/ncx/");
+	public static Namespace opf_uri = Namespace.getNamespace(NamespaceList.opf.getURI());
 
 }
