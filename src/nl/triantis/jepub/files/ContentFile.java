@@ -106,7 +106,7 @@ public class ContentFile implements EpubFile{
 		Element manifest = new Element("manifest");
 		
 		for(File f : book.getTextDirectory().listFiles()) {
-			String filepath = book.getRelativePath(f, book.getOebpsDirectory()).replace("\\", "/");
+			String filepath = book.getRelativePath(f, book.getOebpsDirectory());
 			
 			Element text = new Element("item");
 			text.setAttribute("href", filepath);
@@ -116,7 +116,7 @@ public class ContentFile implements EpubFile{
 		}
 		
 		for(File f : book.getImagesDirectory().listFiles()) {
-			String filepath = book.getRelativePath(f, book.getOebpsDirectory()).replace("\\", "/");
+			String filepath = book.getRelativePath(f, book.getOebpsDirectory());
 			
 			Element image = new Element("item");
 			image.setAttribute("href", filepath);
@@ -125,21 +125,21 @@ public class ContentFile implements EpubFile{
 			manifest.addContent(image);
 		}
 		
-		String filepath = book.getRelativePath(book.getPageStylesFile(), book.getOebpsDirectory()).replace("\\", "/");
+		String filepath = book.getRelativePath(book.getPageStylesFile(), book.getOebpsDirectory());
 		Element pagestyle = new Element("item");
 		pagestyle.setAttribute("href", filepath);
 		pagestyle.setAttribute("id", "page_css");
 		pagestyle.setAttribute("media-type", "text/css");
 		manifest.addContent(pagestyle);
 		
-		filepath = book.getRelativePath(book.getStylesheetFile(), book.getOebpsDirectory()).replace("\\", "/");
+		filepath = book.getRelativePath(book.getStylesheetFile(), book.getOebpsDirectory());
 		Element stylesheet = new Element("item");
 		stylesheet.setAttribute("href", filepath);
 		stylesheet.setAttribute("id", "css");
 		stylesheet.setAttribute("media-type", "text/css");
 		manifest.addContent(stylesheet);
 		
-		filepath = book.getRelativePath(book.getTableOfContentsFile(), book.getOebpsDirectory()).replace("\\", "/");
+		filepath = book.getRelativePath(book.getTableOfContentsFile(), book.getOebpsDirectory());
 		Element toc = new Element("item");
 		toc.setAttribute("href", filepath);
 		toc.setAttribute("id", "ncx");

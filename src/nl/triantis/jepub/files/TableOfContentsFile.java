@@ -97,7 +97,7 @@ public class TableOfContentsFile implements EpubFile{
 			navlabel.addContent(label);
 			navpoint.addContent(navlabel);
 			
-			String filepath = book.getRelativePath(f, book.getOebpsDirectory()).replace("\\", "/");
+			String filepath = book.getRelativePath(f, book.getOebpsDirectory());
 			Element content = new Element("content");
 			content.setAttribute("src", filepath);
 			navpoint.addContent(content);

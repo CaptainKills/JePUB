@@ -23,10 +23,10 @@ public class Main {
 	private static String export_directory = "export";
 	
 	public static void main(String[] args) {
-		String author = "Author";
+		String author = "Danick Triantis";
 		String rights = "All rights reserved";
-		String publisher = "Publisher";
-		String title = "EPUB Book";
+		String publisher = "Triantis Publishing House";
+		String title = "Test";
 		String date = "11-11-2023";
 		String language = "en-UK";
 		String isbn = "9781780622293";
