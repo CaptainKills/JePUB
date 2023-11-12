@@ -34,6 +34,7 @@ public class Book {
 	private String language;
 	private String isbn;
 	private String description;
+	private String filename;
 	
 	public Book(String book_directory) {
 		this.book_directory = Paths.get(book_directory).toFile();
@@ -218,6 +219,14 @@ public class Book {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getFileName() {
+		return filename;
+	}
+
+	public void setFileName(String filename) {
+		this.filename = filename;
 	}
 	
 }

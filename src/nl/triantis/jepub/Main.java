@@ -2,6 +2,8 @@ package nl.triantis.jepub;
 
 import java.io.File;
 
+import nl.triantis.jepub.zip.Zip;
+
 public class Main {
 	
 	/* > Book
@@ -39,9 +41,13 @@ public class Main {
 		book.setLanguage(language);
 		book.setIsbn(isbn);
 		book.setDescription(description);
+		book.setFileName(title + " - " + author);
 		
 		book.createDirectories();
 		book.createFiles();
+		
+		Zip zip = new Zip(book, ".epub");
+		zip.zipBook();
 	}
 
 }
