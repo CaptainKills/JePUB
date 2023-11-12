@@ -106,35 +106,42 @@ public class ContentFile implements EpubFile{
 		Element manifest = new Element("manifest");
 		
 		for(File f : book.getTextDirectory().listFiles()) {
+			String filepath = book.getRelativePath(f, book.getOebpsDirectory()).replace("\\", "/");
+			
 			Element text = new Element("item");
-			text.setAttribute("href", book.getRelativePath(f));
+			text.setAttribute("href", filepath);
 			text.setAttribute("id", f.getName());
 			text.setAttribute("media-type", "application/xhtml+xml");
 			manifest.addContent(text);
 		}
 		
 		for(File f : book.getImagesDirectory().listFiles()) {
+			String filepath = book.getRelativePath(f, book.getOebpsDirectory()).replace("\\", "/");
+			
 			Element image = new Element("item");
-			image.setAttribute("href", book.getRelativePath(f));
+			image.setAttribute("href", filepath);
 			image.setAttribute("id", f.getName());
 			image.setAttribute("media-type", "image/jpeg");
 			manifest.addContent(image);
 		}
 		
+		String filepath = book.getRelativePath(book.getPageStylesFile(), book.getOebpsDirectory()).replace("\\", "/");
 		Element pagestyle = new Element("item");
-		pagestyle.setAttribute("href", book.getRelativePath(book.getPageStylesFile()));
+		pagestyle.setAttribute("href", filepath);
 		pagestyle.setAttribute("id", "page_css");
 		pagestyle.setAttribute("media-type", "text/css");
 		manifest.addContent(pagestyle);
 		
+		filepath = book.getRelativePath(book.getStylesheetFile(), book.getOebpsDirectory()).replace("\\", "/");
 		Element stylesheet = new Element("item");
-		stylesheet.setAttribute("href", book.getRelativePath(book.getStylesheetFile()));
+		stylesheet.setAttribute("href", filepath);
 		stylesheet.setAttribute("id", "css");
 		stylesheet.setAttribute("media-type", "text/css");
 		manifest.addContent(stylesheet);
 		
+		filepath = book.getRelativePath(book.getTableOfContentsFile(), book.getOebpsDirectory()).replace("\\", "/");
 		Element toc = new Element("item");
-		toc.setAttribute("href", book.getRelativePath(book.getTableOfContentsFile()));
+		toc.setAttribute("href", filepath);
 		toc.setAttribute("id", "ncx");
 		toc.setAttribute("media-type", "application/x-dtbncx+xml");
 		manifest.addContent(toc);

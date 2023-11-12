@@ -98,10 +98,9 @@ public class Book {
 		mimetype.create();
 	}
 	
-	public String getRelativePath(File file) {
+	public String getRelativePath(File file, File dir) {
 		String filePath = file.toString();
-		filePath = filePath.substring(getOebpsDirectory().toString().length() + 1);
-		filePath = filePath.replace("\\", "/");
+		filePath = filePath.substring(dir.toString().length() + 1);
 		
 		return filePath;
 	}
