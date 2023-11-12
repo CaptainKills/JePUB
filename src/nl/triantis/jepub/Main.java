@@ -32,8 +32,9 @@ public class Main {
 		String language = "en-UK";
 		String isbn = "9781780622293";
 		String description = "A book generated with JePUB by Danick Triantis";
+		String filename = title + " - " + author;
 		
-		Book book = new Book(export_directory + File.separator + "");
+		Book book = new Book(export_directory + File.separator + filename);
 		book.setAuthor(author);	
 		book.setRights(rights);
 		book.setPublisher(publisher);
@@ -42,12 +43,12 @@ public class Main {
 		book.setLanguage(language);
 		book.setIsbn(isbn);
 		book.setDescription(description);
-		book.setFileName(title + " - " + author);
+		book.setFileName(filename);
 		
 		book.createDirectories();
 		book.createFiles();
 		
-		Zip zip = new Zip(book, ".epub");
+		Zip zip = new Zip(book, export_directory, ".epub");
 		zip.zipBook();
 	}
 

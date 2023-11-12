@@ -13,15 +13,17 @@ import nl.triantis.jepub.Book;
 public class Zip {
 	
 	private Book book;
+	private String exportDirectory;
 	private String fileExtension;
 	
-	public Zip(Book book, String fileExtension) {
+	public Zip(Book book, String exportDirectory, String fileExtension) {
 		this.book = book;
+		this.exportDirectory = exportDirectory;
 		this.fileExtension = fileExtension;
 	}
 	
 	public void zipBook() {
-		try (FileOutputStream fos = new FileOutputStream(book.getBookDirectory() + File.separator + book.getFileName() + fileExtension, false);
+		try (FileOutputStream fos = new FileOutputStream(exportDirectory + File.separator + book.getFileName() + fileExtension, false);
 				ZipOutputStream zos = new ZipOutputStream(fos);) {			
 			zipDirectory(book.getBookDirectory(), zos);
 			zos.closeEntry();
