@@ -1,5 +1,6 @@
 package nl.triantis.jepub;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Paths;
 
@@ -9,6 +10,7 @@ import nl.triantis.jepub.files.MimetypeFile;
 import nl.triantis.jepub.files.PageStylesFile;
 import nl.triantis.jepub.files.StylesheetFile;
 import nl.triantis.jepub.files.TableOfContentsFile;
+import nl.triantis.jepub.files.TitlepageFile;
 
 public class Book {
 	
@@ -35,6 +37,8 @@ public class Book {
 	private String isbn;
 	private String description;
 	private String filename;
+	
+	private BufferedImage coverImage;
 	
 	public Book(String book_directory) {
 		this.book_directory = Paths.get(book_directory).toFile();
@@ -80,6 +84,11 @@ public class Book {
 	}
 	
 	public void createFiles() {
+		// Epub Content
+		TitlepageFile titlepage = new TitlepageFile(this);
+		titlepage.create();
+		
+		// Epub Framework
 		ContainerFile container = new ContainerFile(this);
 		container.create();
 		
@@ -228,6 +237,14 @@ public class Book {
 
 	public void setFileName(String filename) {
 		this.filename = filename;
+	}
+
+	public BufferedImage getCoverImage() {
+		return coverImage;
+	}
+
+	public void setCoverImage(BufferedImage coverImage) {
+		this.coverImage = coverImage;
 	}
 	
 }

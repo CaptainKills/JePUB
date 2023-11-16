@@ -166,14 +166,8 @@ public class ContentFile implements EpubFile{
 		Element cover = new Element("reference", guide.getNamespace());
 		cover.setAttribute("type", "cover");
 		cover.setAttribute("title", "Cover");
-		cover.setAttribute("href", "");
+		cover.setAttribute("href", "Text/titlepage.xhtml");
 		guide.addContent(cover);
-		
-		Element titlepage = new Element("reference", guide.getNamespace());
-		titlepage.setAttribute("type", "text");
-		titlepage.setAttribute("title", "Title Page");
-		titlepage.setAttribute("href", "");
-		guide.addContent(titlepage);
 		
 		Element toc = new Element("reference", guide.getNamespace());
 		toc.setAttribute("type", "toc");

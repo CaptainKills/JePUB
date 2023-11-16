@@ -14,5 +14,8 @@ public class NamespaceList {
 	
 	public static Namespace ncx = Namespace.getNamespace("http://www.daisy.org/z3986/2005/ncx/");
 	public static Namespace opf_uri = Namespace.getNamespace(NamespaceList.opf.getURI());
-
+	
+	public static Namespace xhtml = Namespace.getNamespace("http://www.w3.org/1999/xhtml");
+	public static Namespace svg = Namespace.getNamespace("http://www.w3.org/2000/svg");
+	public static Namespace xlink = Namespace.getNamespace("xlink", "http://www.w3.org/1999/xlink");
 }
