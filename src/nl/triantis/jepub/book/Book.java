@@ -1,4 +1,4 @@
-package nl.triantis.jepub;
+package nl.triantis.jepub.book;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,19 +14,7 @@ import nl.triantis.jepub.files.TitlepageFile;
 
 public class Book {
 	
-	private File book_directory;
-	private File meta_directory;
-	private File oebps_directory;
-	private File images_directory;
-	private File styles_directory;
-	private File text_directory;
-	
-	private File container_file;
-	private File page_styles_file;
-	private File stylesheet_file;
-	private File content_file;
-	private File toc_file;
-	private File mimetype_file;
+	private BookDirectory directory;
 	
 	private String author;
 	private String rights;
@@ -40,46 +28,37 @@ public class Book {
 	
 	private BufferedImage coverImage;
 	
-	public Book(String book_directory) {
-		this.book_directory = Paths.get(book_directory).toFile();
-		
-		this.meta_directory = Paths.get(book_directory + File.separator + "META-INF").toFile();
-		this.oebps_directory = Paths.get(book_directory + File.separator + "OEBPS").toFile();
-		this.images_directory = Paths.get(oebps_directory + File.separator + "Images").toFile();
-		this.styles_directory = Paths.get(oebps_directory + File.separator + "Styles").toFile();
-		this.text_directory = Paths.get(oebps_directory + File.separator + "Text").toFile();
-		
-		this.container_file = Paths.get(meta_directory + File.separator + "container.xml").toFile();
-		this.page_styles_file = Paths.get(styles_directory + File.separator + "page_styles.css").toFile();
-		this.stylesheet_file = Paths.get(styles_directory + File.separator + "stylesheet.css").toFile();
-		this.content_file = Paths.get(oebps_directory + File.separator + "content.opf").toFile();
-		this.toc_file = Paths.get(oebps_directory + File.separator + "toc.ncx").toFile();
-		this.mimetype_file = Paths.get(book_directory + File.separator + "mimetype").toFile();
-	}
-	
 	public void createDirectories() {
-		if(!getBookDirectory().exists()) {
-			getBookDirectory().mkdir();
+		this.directory = new BookDirectory(filename);
+		
+		File bookDirectory = Paths.get(getBookDirectory()).toFile();
+		if(!bookDirectory.exists()) {
+			bookDirectory.mkdir();
 		}
 		
-		if(!getMetaDirectory().exists()) {
-			getMetaDirectory().mkdir();
+		File metaDirectory = Paths.get(getMetaDirectory()).toFile();
+		if(!metaDirectory.exists()) {
+			metaDirectory.mkdir();
 		}
 		
-		if(!getOebpsDirectory().exists()) {
-			getOebpsDirectory().mkdir();
+		File oebpsDirectory = Paths.get(getOebpsDirectory()).toFile();
+		if(!oebpsDirectory.exists()) {
+			oebpsDirectory.mkdir();
 		}
 		
-		if(!getImagesDirectory().exists()) {
-			getImagesDirectory().mkdir();
+		File imagesDirectory = Paths.get(getImagesDirectory()).toFile();
+		if(!imagesDirectory.exists()) {
+			imagesDirectory.mkdir();
 		}
 		
-		if(!getStylesDirectory().exists()) {
-			getStylesDirectory().mkdir();
+		File stylesDirectory = Paths.get(getStylesDirectory()).toFile();
+		if(!stylesDirectory.exists()) {
+			stylesDirectory.mkdir();
 		}
 		
-		if(!getTextDirectory().exists()) {
-			getTextDirectory().mkdir();
+		File textDirectory = Paths.get(getTextDirectory()).toFile();
+		if(!textDirectory.exists()) {
+			textDirectory.mkdir();
 		}
 	}
 	
@@ -87,6 +66,9 @@ public class Book {
 		// Epub Content
 		TitlepageFile titlepage = new TitlepageFile(this);
 		titlepage.create();
+		
+//		TextpageFile textpage = new TextpageFile(this);
+//		textpage.create();
 		
 		// Epub Framework
 		ContainerFile container = new ContainerFile(this);
@@ -117,27 +99,27 @@ public class Book {
 	}
 
 	// Getters: EPUB Directories
-	public File getBookDirectory() {
+	public String getBookDirectory() {
 		return book_directory;
 	}
 
-	public File getMetaDirectory() {
+	public String getMetaDirectory() {
 		return meta_directory;
 	}
 
-	public File getOebpsDirectory() {
+	public String getOebpsDirectory() {
 		return oebps_directory;
 	}
 
-	public File getImagesDirectory() {
+	public String getImagesDirectory() {
 		return images_directory;
 	}
 
-	public File getStylesDirectory() {
+	public String getStylesDirectory() {
 		return styles_directory;
 	}
 
-	public File getTextDirectory() {
+	public String getTextDirectory() {
 		return text_directory;
 	}
 

@@ -11,8 +11,8 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import nl.triantis.jepub.Book;
-import nl.triantis.jepub.namespace.NamespaceList;
+import nl.triantis.jepub.book.Book;
+import nl.triantis.jepub.defines.NamespaceList;
 
 public class TitlepageFile implements EpubFile {
 

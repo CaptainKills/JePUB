@@ -1,4 +1,4 @@
-package nl.triantis.jepub.namespace;
+package nl.triantis.jepub.defines;
 
 import org.jdom2.Namespace;
 

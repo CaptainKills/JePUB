@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import nl.triantis.jepub.Book;
+import nl.triantis.jepub.book.Book;
 
 public class PageStylesFile implements EpubFile{
 	

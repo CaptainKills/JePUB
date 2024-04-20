@@ -8,7 +8,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipOutputStream;
 
-import nl.triantis.jepub.Book;
+import nl.triantis.jepub.book.Book;
 
 public class Zip {
 	
