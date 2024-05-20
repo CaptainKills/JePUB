@@ -31,32 +31,32 @@ public class Book {
 	public void createDirectories() {
 		this.directory = new BookDirectory(filename);
 		
-		File bookDirectory = Paths.get(getBookDirectory()).toFile();
+		File bookDirectory = getBookDirectory();
 		if(!bookDirectory.exists()) {
 			bookDirectory.mkdir();
 		}
 		
-		File metaDirectory = Paths.get(getMetaDirectory()).toFile();
+		File metaDirectory = getMetaDirectory();
 		if(!metaDirectory.exists()) {
 			metaDirectory.mkdir();
 		}
 		
-		File oebpsDirectory = Paths.get(getOebpsDirectory()).toFile();
+		File oebpsDirectory = getOebpsDirectory();
 		if(!oebpsDirectory.exists()) {
 			oebpsDirectory.mkdir();
 		}
 		
-		File imagesDirectory = Paths.get(getImagesDirectory()).toFile();
+		File imagesDirectory = getImagesDirectory();
 		if(!imagesDirectory.exists()) {
 			imagesDirectory.mkdir();
 		}
 		
-		File stylesDirectory = Paths.get(getStylesDirectory()).toFile();
+		File stylesDirectory = getStylesDirectory();
 		if(!stylesDirectory.exists()) {
 			stylesDirectory.mkdir();
 		}
 		
-		File textDirectory = Paths.get(getTextDirectory()).toFile();
+		File textDirectory = getTextDirectory();
 		if(!textDirectory.exists()) {
 			textDirectory.mkdir();
 		}
@@ -99,53 +99,53 @@ public class Book {
 	}
 
 	// Getters: EPUB Directories
-	public String getBookDirectory() {
-		return book_directory;
+	public File getBookDirectory() {
+		return Paths.get(directory.bookDirectory).toFile();
 	}
 
-	public String getMetaDirectory() {
-		return meta_directory;
+	public File getMetaDirectory() {
+		return Paths.get(directory.metaDirectory).toFile();
 	}
 
-	public String getOebpsDirectory() {
-		return oebps_directory;
+	public File getOebpsDirectory() {
+		return Paths.get(directory.oebpsDirectory).toFile();
 	}
 
-	public String getImagesDirectory() {
-		return images_directory;
+	public File getImagesDirectory() {
+		return Paths.get(directory.imagesDirectory).toFile();
 	}
 
-	public String getStylesDirectory() {
-		return styles_directory;
+	public File getStylesDirectory() {
+		return Paths.get(directory.stylesDirectory).toFile();
 	}
 
-	public String getTextDirectory() {
-		return text_directory;
+	public File getTextDirectory() {
+		return Paths.get(directory.textDirectory).toFile();
 	}
 
 	// Getters: EPUB Files
 	public File getContainerFile() {
-		return container_file;
+		return Paths.get(directory.containerFile).toFile();
 	}
 
 	public File getPageStylesFile() {
-		return page_styles_file;
+		return Paths.get(directory.pageStylesFile).toFile();
 	}
 
 	public File getStylesheetFile() {
-		return stylesheet_file;
+		return Paths.get(directory.stylesheetFile).toFile();
 	}
 
 	public File getContentFile() {
-		return content_file;
+		return Paths.get(directory.contentFile).toFile();
 	}
 
 	public File getTableOfContentsFile() {
-		return toc_file;
+		return Paths.get(directory.tocFile).toFile();
 	}
 
 	public File getMimetypeFile() {
-		return mimetype_file;
+		return Paths.get(directory.mimetypeFile).toFile();
 	}
 
 	// Getters & Setters: Book Parameters

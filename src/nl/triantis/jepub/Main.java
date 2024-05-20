@@ -37,7 +37,7 @@ public class Main {
 		String description = "A book generated with JePUB by Danick Triantis";
 		String filename = title + " - " + author;
 		
-		String cover = PathList.import_directory + File.separator + "cover.jpg";
+		String cover = PathList.importDirectory + File.separator + "cover.jpg";
 		BufferedImage coverImage = ImageIO.read(new File(cover));
 		
 		Book book = new Book();
@@ -55,7 +55,7 @@ public class Main {
 		book.createDirectories();
 		book.createFiles();
 		
-		Zip zip = new Zip(book, PathList.export_directory, ".epub");
+		Zip zip = new Zip(book, PathList.exportDirectory, ".epub");
 		zip.zipBook();
 	}
 	

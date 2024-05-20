@@ -24,8 +24,8 @@ public class BookDirectory {
 	
 	public BookDirectory(String fileName) {
 		bookDirectory = createPath(PathList.exportDirectory, fileName);
-		oebpsDirectory = createPath(bookDirectory, "META_INF");
-		imagesDirectory = createPath(bookDirectory, "OEBPS");
+		metaDirectory = createPath(bookDirectory, "META_INF");
+		oebpsDirectory = createPath(bookDirectory, "OEBPS");
 		imagesDirectory = createPath(oebpsDirectory, "Images");
 		stylesDirectory = createPath(oebpsDirectory, "Styles");
 		textDirectory = createPath(oebpsDirectory, "Text");
@@ -35,7 +35,7 @@ public class BookDirectory {
 		stylesheetFile = createPath(stylesDirectory, "stylesheet.css");
 		contentFile = createPath(oebpsDirectory, "content.opf");
 		tocFile = createPath(oebpsDirectory, "toc.ncx");
-		mimetypeFile = createPath(PathList.exportDirectory, "mimetype");
+		mimetypeFile = createPath(bookDirectory, "mimetype");
 	}
 	
 	private static String createPath(String... paths) {
